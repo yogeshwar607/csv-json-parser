@@ -1,30 +1,41 @@
 {
 	"name": "csv-json-parser",
-	"version": "1.0.1",
-	"description": "csv to json & json to csv parser ",
-	"main": "dist/bundle/index.js",
+	"version": "1.0.2",
+	"description": "csv to json & json to csv parser",
+	"main": "src/index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/yogeshwar607/csv-json-parser"
+	},
+	"bugs": {
+		"url": "https://github.com/yogeshwar607/csv-json-parser/issues"
+	},
+	"keywords": [
+		"json",
+		"to",
+		"csv",
+		"converter",
+		"export",
+		"json2csv",
+		"csv2json",
+		"parse",
+		"parser",
+		"json-2-csv",
+		"csv-2-json",
+		"cli"
+	],
 	"scripts": {
-		"build:clean": "rm -rf ./dist && mkdir -p ./dist/bundle ./dist/declarations",
-		"build:bundle": "rollup -c ./rollup/build.js",
-		"build": "npm run build:clean && npm run build:bundle",
+		"start": "node src/index",
 		"test": "jest"
 	},
 	"author": "",
 	"license": "ISC",
-	"type": "module",
-	"dependencies": {
-		"babel-jest": "^26.0.1",
-		"@babel/cli": "^7.8.4",
-		"@babel/core": "^7.8.4",
-		"@babel/preset-env": "^7.8.4"
-	},
+	"dependencies": {},
 	"devDependencies": {
-		"jest": "25.1.0",
-		"rollup": "^1.27.14",
-		"rollup-plugin-commonjs": "^10.1.0",
-		"rollup-plugin-node-resolve": "^5.2.0"
+		"jest": "25.1.0"
 	},
-	"jest": {
-		"testPathIgnorePatterns": [ "./rollup" ]
+	"jest": {},
+	"engines": {
+		"node": ">=12"
 	}
 }

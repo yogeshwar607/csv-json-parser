@@ -1,12 +1,12 @@
-import { Readable } from 'stream';
-import { csvToJsonParser } from './helpers/csv-json.mjs'
-import { jsonToCsvParser } from './helpers/json-csv.mjs'
-import { streamFromFile, streamFromString, streamFromUrl } from './helpers/utils.mjs'
+const { Readable } = require('stream');
+const { csvToJsonParser } = require('./helpers/csv-json.js')
+const { jsonToCsvParser } = require('./helpers/json-csv.js')
+const { streamFromFile, streamFromString, streamFromUrl } = require('./helpers/utils.js')
 
-export async function csvToJson(config) {
+async function csvToJson(config) {
   return new Promise((resolve, reject) => {
     try {
-      const { csvString, path, url, outputMode = 'stream' } = config
+      const { csvString = '', path = '', url = '', outputMode = 'stream' } = config
       let stream;
       if (path) {
         stream = Readable.from(csvToJsonParser(streamFromFile(path), config))
@@ -39,13 +39,13 @@ export async function csvToJson(config) {
       reject(error.message)
     }
   })
-  .catch(error => console.log('Error:', error))
+
 }
 
-export async function jsonToCsv(config) {
+async function jsonToCsv(config) {
   return new Promise((resolve, reject) => {
     try {
-      const { jsonString, path, url, outputMode = 'stream' } = config
+      const { jsonString = '', path = '', url = '', outputMode = 'stream' } = config
       let stream;
       if (path) {
         stream = Readable.from(jsonToCsvParser(streamFromFile(path), config))
@@ -78,10 +78,10 @@ export async function jsonToCsv(config) {
       reject(error.message)
     }
   })
-  .catch(error => console.log('Error:', error))
+
 }
 
-export async function csvToJsonFromFile(config) {
+async function csvToJsonFromFile(config) {
   try {
     return await csvToJson(config)
   } catch (error) {
@@ -90,7 +90,7 @@ export async function csvToJsonFromFile(config) {
 
 }
 
-export async function csvToJsonFromUrl(config) {
+async function csvToJsonFromUrl(config) {
   try {
     return await csvToJson(config)
   } catch (error) {
@@ -98,7 +98,7 @@ export async function csvToJsonFromUrl(config) {
   }
 }
 
-export async function jsonToCsvFromFile(config) {
+async function jsonToCsvFromFile(config) {
   try {
     return await jsonToCsv(config)
   } catch (error) {
@@ -107,10 +107,20 @@ export async function jsonToCsvFromFile(config) {
 
 }
 
-export async function jsonToCsvFromUrl(config) {
+async function jsonToCsvFromUrl(config) {
   try {
     return await jsonToCsv(config)
   } catch (error) {
     throw error
   }
+}
+
+
+module.exports = {
+  jsonToCsvFromUrl,
+  jsonToCsvFromFile,
+  csvToJsonFromUrl,
+  csvToJsonFromFile,
+  jsonToCsv,
+  csvToJson
 }

@@ -1,7 +1,7 @@
-import { createReadStream } from 'fs'
-import { Readable } from 'stream'
+const { createReadStream } = require('fs')
+const { Readable } = require('stream')
 
-export const streamFromFile = (file, opts = { encoding: 'utf8' }) => {
+const streamFromFile = (file, opts = { encoding: 'utf8' }) => {
   try {
     if (!file) throw new Error("file path not provided")
     return createReadStream(file, opts)
@@ -9,7 +9,7 @@ export const streamFromFile = (file, opts = { encoding: 'utf8' }) => {
     throw error
   }
 }
-export const streamFromString = (string, opts = { encoding: 'utf8' }) => {
+const streamFromString = (string, opts = { encoding: 'utf8' }) => {
   try {
     if (!string) throw new Error("string not provided")
     return Readable.from(string)
@@ -18,7 +18,7 @@ export const streamFromString = (string, opts = { encoding: 'utf8' }) => {
   }
 }
 
-export const streamFromUrl = (url, opts = { encoding: 'utf8' }) => {
+const streamFromUrl = (url, opts = { encoding: 'utf8' }) => {
   try {
     if (!url) throw new Error("url not provided")
     // Todo:
@@ -27,4 +27,10 @@ export const streamFromUrl = (url, opts = { encoding: 'utf8' }) => {
   } catch (error) {
     throw error
   }
+}
+
+module.exports = {
+  streamFromFile,
+  streamFromString,
+  streamFromUrl
 }

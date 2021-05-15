@@ -29,7 +29,7 @@ function transformation(values, config) {
 }
 
 // parser     
-export async function* jsonToCsvParser(source, config) {
+async function* jsonToCsvParser(source, config) {
   try {
     const { headers = false, delimiter = ',' } = config
     for await (let values of csvStrings(source)) {
@@ -38,4 +38,8 @@ export async function* jsonToCsvParser(source, config) {
   } catch (error) {
     throw error
   }
+}
+
+module.exports = {
+  jsonToCsvParser
 }

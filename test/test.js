@@ -3,7 +3,7 @@ const {
   jsonToCsv,
   csvToJsonFromFile,
   jsonToCsvFromFile
-} = require('../dist/bundle/index')
+} = require('../src/index')
 
 describe('csv to json parse', function () {
   test('The function should return a Promise', () => {
