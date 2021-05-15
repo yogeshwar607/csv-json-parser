@@ -1,7 +1,7 @@
 const {
   csvToJson,
   jsonToCsv
-} = require('../dist/bundle/index')
+} = require('../src/index')
 const Readable = require('stream')
 
 describe('output is instance of Streams', function () {

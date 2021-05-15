@@ -68,8 +68,6 @@ function transformation(values, config, counter) {
   return valuesArray
 }
 
-
-
 // generates lines from a csv  stream 
 async function* csvLines(chunkStream) {
   try {
@@ -86,7 +84,7 @@ async function* csvLines(chunkStream) {
 }
 
 // parser     
-export async function* csvToJsonParser(source, config) {
+async function* csvToJsonParser(source, config) {
   try {
     const { headers = false } = config
     let counter = 0;
@@ -99,4 +97,8 @@ export async function* csvToJsonParser(source, config) {
   } catch (error) {
     throw error
   }
+}
+
+module.exports = {
+  csvToJsonParser
 }
